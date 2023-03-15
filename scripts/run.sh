@@ -54,11 +54,11 @@ ARCH=$(
 
 RELEASE_TYPE=$(
     Radiolist '([title]="WSA release type"
-                [default]="retail")' \
-        'retail' "Stable Channel" 'on' \
+                [default]="insider fast")' \
+        'retail' "Stable Channel" 'off' \
         'release preview' "Release Preview Channel" 'off' \
         'insider slow' "Beta Channel" 'off' \
-        'insider fast' "Dev Channel" 'off'
+        'insider fast' "Dev Channel" 'on'
 )
 
 if (YesNoBox '([title]="Root" [text]="Do you want to Root WSA?")'); then
@@ -75,22 +75,17 @@ fi
 if [ "$ROOT_SOL" = "magisk" ]; then
     MAGISK_VER=$(
         Radiolist '([title]="Magisk version"
-                    [default]="stable")' \
-            'stable' "Stable Channel" 'on' \
-            'beta' "Beta Channel" 'off' \
-            'canary' "Canary Channel" 'off' \
-            'debug' "Canary Channel Debug Build" 'off'
+                    [default]="delta")' \
+            'delta' "Delta Version by HuskyDG" 'on'
     )
-else
-    MAGISK_VER=stable
 fi
 
 if (YesNoBox '([title]="Install GApps" [text]="Do you want to install GApps?")'); then
     GAPPS_BRAND=$(
         Radiolist '([title]="Which GApps do you want to install?"
-                    [default]="MindTheGapps")' \
-            'MindTheGapps' "Recommend" 'on' \
-            'OpenGApps' "This flavor may cause startup failure" 'off'
+                    [default]="OpenGApps")' \
+            'MindTheGapps' "Recommend" 'off' \
+            'OpenGApps' "This flavor may cause startup failure" 'on'
     )
 else
     GAPPS_BRAND="none"
@@ -132,9 +127,9 @@ fi
 if [ "$COMPRESS_OUTPUT" = "--compress" ]; then
     COMPRESS_FORMAT=$(
         Radiolist '([title]="Compress format"
-                    [default]="7z")' \
-            '7z' "7-Zip" 'on' \
-            'zip' "Zip" 'off'
+                    [default]="zip")' \
+            '7z' "7-Zip" 'off' \
+            'zip' "Zip" 'on'
     )
 fi
 
